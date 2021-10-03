@@ -1,5 +1,8 @@
-﻿namespace AI
+﻿using UnityEngine;
+
+namespace AI
 {
+    [CreateAssetMenu(menuName = "FSM/Action/GameOverAction", fileName = "GameOverAction")]
     public class GameOverAction : Action
     {
         private CharacterController controller;

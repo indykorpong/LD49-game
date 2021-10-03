@@ -2,10 +2,9 @@
 
 namespace AI
 {
-    [CreateAssetMenu(menuName = "FSM/Action", fileName = "ActionA")]
-    public abstract class Action : ScriptableObject
+    public class Action : ScriptableObject
     {
-        public abstract void Initialize();
-        public abstract void Execute();
+        public virtual void Initialize(){}
+        public virtual void Execute(){}
     }
 }

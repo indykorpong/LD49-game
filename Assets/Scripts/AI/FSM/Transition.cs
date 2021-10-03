@@ -2,7 +2,7 @@
 
 namespace AI
 {
-    [CreateAssetMenu(menuName = "FSM/Transition", fileName = "TransitionA")]
+    [CreateAssetMenu(menuName = "FSM/Transition", fileName = "aTransition")]
     public class Transition : ScriptableObject
     {
         public Condition condition;

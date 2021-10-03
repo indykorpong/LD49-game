@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace AI
@@ -6,7 +7,8 @@ namespace AI
     public class StateController : MonoBehaviour
     {
         public List<State> stateList;
-        public State currentState;
+        private State currentState;
+        public State initialState;
         
         private void Start()
         {
@@ -23,6 +25,8 @@ namespace AI
                     transition.condition.Initialize();
                 }
             }
+
+            currentState = initialState;
         }
 
         private void Update()

@@ -1,5 +1,8 @@
-﻿namespace AI
+﻿using UnityEngine;
+
+namespace AI
 {
+    [CreateAssetMenu(menuName = "FSM/Action/JumpAction", fileName = "JumpAction")]
     public class JumpAction : Action
     {
         private CharacterController controller;

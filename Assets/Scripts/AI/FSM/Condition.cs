@@ -2,10 +2,14 @@
 
 namespace AI
 {
-    [CreateAssetMenu(menuName = "FSM/Condition", fileName = "ConditionA")]
-    public abstract class Condition : ScriptableObject
+    [CreateAssetMenu(menuName = "FSM/Condition", fileName = "aCondition")]
+    public class Condition : ScriptableObject
     {
-        public abstract void Initialize();
-        public abstract bool CheckCondition();
+        public virtual void Initialize(){}
+
+        public virtual bool CheckCondition()
+        {
+            return false;
+        }
     }
 }

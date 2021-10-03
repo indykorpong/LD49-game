@@ -1,5 +1,8 @@
-﻿namespace AI
+﻿using UnityEngine;
+
+namespace AI
 {
+    [CreateAssetMenu(menuName = "FSM/Action/StuckAction", fileName = "StuckAction")]
     public class StuckAction : Action
     {
         private CharacterController controller;

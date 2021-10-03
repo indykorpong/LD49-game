@@ -1,5 +1,8 @@
-﻿namespace AI
+﻿using UnityEngine;
+
+namespace AI
 {
+    [CreateAssetMenu(menuName = "FSM/Action/WalkLeftAction", fileName = "WalkLeftAction")]
     public class WalkLeftAction : Action
     {
         private CharacterController controller;
