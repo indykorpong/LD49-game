@@ -20,7 +20,7 @@ public class ObjectBase : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
         
         FixedJoint2D _joint = gameObject.AddComponent<FixedJoint2D>();
         
-        //_joint.anchor = other.contacts[0].point;
+        _joint.anchor = other.contacts[0].point;
 
         _joint.breakForce = breakForce;
         _joint.breakTorque = breakTorque;
