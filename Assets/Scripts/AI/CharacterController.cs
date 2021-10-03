@@ -6,13 +6,11 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     public float speed = 5f;
-    private Vector3 velocity;
     private float xAxis;
 
     public float jumpForce = 5f;
     private float jumpCooldown = 1f;  // in seconds
     private bool pressedJump;
-    private bool touchedGround;
 
     private Rigidbody2D rb2D;
 
@@ -20,20 +18,16 @@ public class CharacterController : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         pressedJump = false;
-        touchedGround = true;
     }
 
     private void Update()
     {
-        
-        
-        Debug.Log($"ground: {touchedGround}, jump: {pressedJump}");
+        CheckJumpKeyPressed();
     }
 
     private void FixedUpdate()
     {
         ControlHorizontalMovement();
-        CheckJumpKeyPressed();
         ControlJump();
     }
 
@@ -41,14 +35,13 @@ public class CharacterController : MonoBehaviour
     {
         xAxis = Input.GetAxis("Horizontal");
 
-        velocity = new Vector3(xAxis, 0, 0);
-        rb2D.velocity = new Vector2(velocity.x * speed, rb2D.velocity.y);
+        rb2D.velocity = new Vector2(xAxis * speed, rb2D.velocity.y);
         //transform.position += velocity * speed * Time.deltaTime;
     }
 
     private void CheckJumpKeyPressed()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !pressedJump && touchedGround)
+        if (Input.GetKeyDown(KeyCode.Space) && !pressedJump)
         {
             pressedJump = true;
         }
@@ -58,17 +51,8 @@ public class CharacterController : MonoBehaviour
     {
         if (pressedJump)
         {
-            rb2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             pressedJump = false;
-            touchedGround = false;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Object"))
-        {
-            touchedGround = true;
+            rb2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
 }
