@@ -9,7 +9,7 @@ public class CharacterController : MonoBehaviour
     private Vector3 velocity;
     private float xAxis;
 
-    public float jumpForce = 100f;
+    public float jumpForce = 5f;
     private float jumpCooldown = 1f;  // in seconds
     private bool pressedJump;
     private bool touchedGround;
@@ -25,11 +25,16 @@ public class CharacterController : MonoBehaviour
 
     private void Update()
     {
+        
+        
+        Debug.Log($"ground: {touchedGround}, jump: {pressedJump}");
+    }
+
+    private void FixedUpdate()
+    {
         ControlHorizontalMovement();
         CheckJumpKeyPressed();
         ControlJump();
-        
-        Debug.Log($"ground: {touchedGround}, jump: {pressedJump}");
     }
 
     private void ControlHorizontalMovement()
@@ -37,7 +42,8 @@ public class CharacterController : MonoBehaviour
         xAxis = Input.GetAxis("Horizontal");
 
         velocity = new Vector3(xAxis, 0, 0);
-        transform.position += velocity * speed * Time.deltaTime;
+        rb2D.velocity = new Vector2(velocity.x * speed, rb2D.velocity.y);
+        //transform.position += velocity * speed * Time.deltaTime;
     }
 
     private void CheckJumpKeyPressed()
@@ -52,7 +58,7 @@ public class CharacterController : MonoBehaviour
     {
         if (pressedJump)
         {
-            rb2D.AddForce(new Vector2(0, jumpForce));
+            rb2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             pressedJump = false;
             touchedGround = false;
         }

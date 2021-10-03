@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f94a0f569173184cb078e3f3bb46faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breakForce: 200
-  breakTorque: 200
+  breakForce: 300
+  breakTorque: 300
   damping: 1
   frequency: 5
 --- !u!50 &5723583354107258671
@@ -116,11 +116,11 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1.5
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &5723583354107258664
 BoxCollider2D:
