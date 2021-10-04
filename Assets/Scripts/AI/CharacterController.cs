@@ -15,6 +15,8 @@ namespace AI
         private bool pressedJump;
 
         private Rigidbody2D rb2D;
+        
+        public Vector3 characterPosition;
 
         private void Start()
         {
@@ -27,11 +29,10 @@ namespace AI
         //     CheckJumpKeyPressed();
         // }
 
-        // private void FixedUpdate()
-        // {
-        //     ControlHorizontalMovement();
-        //     ControlJump();
-        // }
+        private void FixedUpdate()
+        {
+            characterPosition = transform.position;
+        }
 
         private void ControlHorizontalMovement(float xAxis)
         {
