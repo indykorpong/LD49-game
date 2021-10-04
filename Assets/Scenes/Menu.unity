@@ -829,8 +829,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 451.111, y: 358}
-  m_SizeDelta: {x: 939.31, y: 201.521}
+  m_AnchoredPosition: {x: 404.17, y: 358}
+  m_SizeDelta: {x: 1111.651, y: 201.521}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2045771316
 MonoBehaviour:
@@ -852,7 +852,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: To the Moon
+  m_text: Cat Going Up
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f1f01ff3a527fb243ac9b477d52b133a, type: 2}
   m_sharedMaterial: {fileID: 422079153531332350, guid: f1f01ff3a527fb243ac9b477d52b133a, type: 2}
