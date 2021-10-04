@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    [SerializeField] private float camMoveSpeed = 0.2f;
     // Update is called once per frame
     void Update()
     {
-        
+        var _transformPosition = transform.position;
+        _transformPosition.y += camMoveSpeed * Time.deltaTime;
+        transform.position = _transformPosition;
     }
 }

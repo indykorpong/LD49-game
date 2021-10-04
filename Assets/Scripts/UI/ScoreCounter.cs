@@ -16,7 +16,7 @@ public class ScoreCounter : MonoBehaviour
     {
         if(!GameManager.Instance.isGameStart) return;
         
-        score = player.transform.position.y * 10;
-        scoreText.text = score + " M";
+        score = (player.transform.position.y * 10f);
+        scoreText.text = score.ToString("n1") + " M";
     }
 }
