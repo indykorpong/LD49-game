@@ -29,4 +29,10 @@ public class SceneManager : MonoBehaviour
         }
         UnityEngine.SceneManagement.SceneManager.LoadScene(_name);
     }
+
+    public void ReloadScene()
+    {
+        Scene scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene(); 
+        UnityEngine.SceneManagement.SceneManager.LoadScene(scene.name);
+    }
 }

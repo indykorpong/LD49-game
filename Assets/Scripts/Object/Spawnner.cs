@@ -53,9 +53,10 @@ public class Spawnner : MonoBehaviour
     void Start()
     {
         if (!spawnOnStart) return;
-        
+
+        GameManager.Instance.OnStart += SpawnItem;
         objectToSpawn.Enqueue(objectList[Random.Range(0, objectList.Length)]);
-        SpawnItem();
+        //SpawnItem();
     }
 
     private void SpawnItem()

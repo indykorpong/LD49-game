@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    public Action OnStart;
     public bool IsPause = false;
     public bool isGameStart = false;
     [SerializeField] private GameObject pausePanel;
@@ -27,6 +28,7 @@ public class GameManager : Singleton<GameManager>
         finalPanel.SetActive(false);
         isGameStart = true;
         Time.timeScale = 1;
+        OnStart?.Invoke();
     }
 
     public void TogglePause()
