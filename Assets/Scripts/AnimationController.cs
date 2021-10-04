@@ -7,6 +7,8 @@ public class AnimationController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
 
+    public Animator Animator => animator;
+
     private void OnValidate()
     {
         if (!animator)
@@ -24,33 +26,48 @@ public class AnimationController : MonoBehaviour
     //     }
     // }
 
+    private void ResetAllBooleans()
+    {
+        string[] animBooleans = {"Idle", "Run", "JumpUp", "JumpPeak", "JumpDownLoop"};
+        foreach (string animBoolean in animBooleans)
+        {
+            animator.SetBool(animBoolean, false);
+        }
+    }
+
     public void PlayIdle()
     {
-        animator.Play("Idle");
+        ResetAllBooleans();
+        animator.SetBool("Idle", true);
     }
 
     public void PlayRun()
     {
-        animator.Play("Run");
+        ResetAllBooleans();
+        animator.SetBool("Run", true);
     }
 
-    public void PlayJump()
+    public void PlayJumpUp()
     {
-        animator.Play("Jump");
+        ResetAllBooleans();
+        animator.SetBool("JumpUp", true);
     }
 
-    public void PlayJumpDown()
+    public void PlayJumpPeak()
     {
-        animator.Play("JumpDown");
+        ResetAllBooleans();
+        animator.SetBool("JumpPeak", true);
     }
 
     public void PlayJumpDownLoop()
     {
-        animator.Play("JumpDownLoop");
+        ResetAllBooleans();
+        animator.SetBool("JumpDownLoop", true);
     }
 
-    public void PlayDown()
-    {
-        animator.Play("Down");
-    }
+    // public void PlayDown()
+    // {
+    //     ResetAllBooleans();
+    //     animator.Play("Down");
+    // }
 }

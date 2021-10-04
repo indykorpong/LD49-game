@@ -31,4 +31,9 @@ public class SceneManager : MonoBehaviour
         Scene scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene(); 
         UnityEngine.SceneManagement.SceneManager.LoadScene(scene.name);
     }
+
+    public void ToggleObject(GameObject _gameObject)
+    {
+        _gameObject.SetActive(!_gameObject.activeSelf);
+    }
 }
