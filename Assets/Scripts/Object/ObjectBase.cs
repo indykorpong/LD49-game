@@ -50,6 +50,8 @@ public class ObjectBase : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
             OnStick?.Invoke();
             isFirstStick = true;
         }
+
+        rb.gravityScale = 1;
         
         isStick = true;
         canDrag = false;
