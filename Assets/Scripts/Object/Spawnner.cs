@@ -60,6 +60,7 @@ public class Spawnner : MonoBehaviour
 
     private void SpawnItem()
     {
+        if(!GameManager.Instance.isGameStart) return;
         if (canSpawn)
         {
             var _bound = gameObject.GetComponent<BoxCollider2D>().bounds;

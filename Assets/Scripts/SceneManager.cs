@@ -20,4 +20,13 @@ public class SceneManager : MonoBehaviour
         GameManager.Instance.DestroySelf();
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
+
+    public void LoadStage(string _name)
+    {
+        if (GameManager.Instance)
+        {
+            GameManager.Instance.DestroySelf();
+        }
+        UnityEngine.SceneManagement.SceneManager.LoadScene(_name);
+    }
 }
