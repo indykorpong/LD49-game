@@ -8,36 +8,42 @@ namespace AI
     public class CharacterController : MonoBehaviour
     {
         public float speed = 5f;
-        private float xAxis;
+        private float _xAxis;
 
         public float jumpForce = 5f;
-        private float jumpCooldown = 1f; // in seconds
         private bool pressedJump;
 
         private Rigidbody2D rb2D;
         
-        public Vector3 characterPosition;
+        public Vector3 CharacterPosition { get; set; }
+        public Vector3 LastFramePosition { get; set; }
 
+        public GameObject[] raycast2DObjects;
+        
         private void Start()
         {
             rb2D = GetComponent<Rigidbody2D>();
             pressedJump = false;
+            LastFramePosition = transform.position;
         }
 
-        // private void Update()
-        // {
-        //     CheckJumpKeyPressed();
-        // }
+        private void Update()
+        {
+            // CheckJumpKeyPressed();
+            // SetXAxis();
+        }
 
         private void FixedUpdate()
         {
-            characterPosition = transform.position;
-        }
+            CharacterPosition = transform.position;
+            
+            // ControlHorizontalMovement(_xAxis);
+            // ControlJump();
 
-        private void ControlHorizontalMovement(float xAxis)
-        {
-            // xAxis = Input.GetAxis("Horizontal");
-            rb2D.velocity = new Vector2(xAxis * speed, rb2D.velocity.y);
+            if (LastFramePosition != CharacterPosition)
+            {
+                LastFramePosition = CharacterPosition;
+            }
         }
 
         private void CheckJumpKeyPressed()
@@ -46,6 +52,16 @@ namespace AI
             {
                 pressedJump = true;
             }
+        }
+
+        private void SetXAxis()
+        {
+            _xAxis = Input.GetAxis("Horizontal");
+        }
+
+        private void ControlHorizontalMovement(float xAxis)
+        {
+            rb2D.velocity = new Vector2(xAxis * speed, rb2D.velocity.y);
         }
 
         private void ControlJump()

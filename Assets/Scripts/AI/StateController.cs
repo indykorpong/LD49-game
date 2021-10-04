@@ -7,6 +7,7 @@ namespace AI
     public class StateController : MonoBehaviour
     {
         public List<State> stateList;
+        [SerializeField] 
         private State currentState;
         public State initialState;
         

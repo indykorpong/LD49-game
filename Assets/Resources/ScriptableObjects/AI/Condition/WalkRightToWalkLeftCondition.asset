@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32943d71e43749e0a829b810f64e1eef, type: 3}
+  m_Script: {fileID: 11500000, guid: 8735b3fa444747f097e0516b1ac94e77, type: 3}
   m_Name: WalkRightToWalkLeftCondition
   m_EditorClassIdentifier: 

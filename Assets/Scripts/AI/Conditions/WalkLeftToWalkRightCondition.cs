@@ -1,5 +1,8 @@
-﻿namespace AI
+﻿using UnityEngine;
+
+namespace AI
 {
+    [CreateAssetMenu(menuName = "FSM/Condition/WalkLeftToWalkRightCondition", fileName = "WalkLeftToWalkRightCondition")]
     public class WalkLeftToWalkRightCondition : Condition
     {
         public override bool CheckCondition()
