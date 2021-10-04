@@ -12,9 +12,15 @@ public class ScoreCounter : MonoBehaviour
 
     public float Score => score;
 
+    private GameManager gameManager;
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
     private void Update()
     {
-        if(!GameManager.Instance.isGameStart) return;
+        if(!gameManager.isGameStart) return;
         
         score = (player.transform.position.y * 10f);
         scoreText.text = score.ToString("n1") + " M";

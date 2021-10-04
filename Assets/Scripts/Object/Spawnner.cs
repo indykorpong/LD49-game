@@ -42,6 +42,7 @@ public class Spawnner : MonoBehaviour
     private Queue<GameObject> objectToSpawn = new Queue<GameObject>();
     private bool canSpawn = true;
     private float spawnTime;
+    private GameManager gameManager;
     
     private void OnValidate()
     {
@@ -52,16 +53,18 @@ public class Spawnner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+        
         if (!spawnOnStart) return;
 
-        GameManager.Instance.OnStart += SpawnItem;
+        gameManager.OnStart += SpawnItem;
         objectToSpawn.Enqueue(objectList[Random.Range(0, objectList.Length)]);
         //SpawnItem();
     }
 
     private void SpawnItem()
     {
-        if(!GameManager.Instance.isGameStart) return;
+        if(!gameManager.isGameStart) return;
         if (canSpawn)
         {
             var _bound = gameObject.GetComponent<BoxCollider2D>().bounds;
