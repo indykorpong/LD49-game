@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 public class ObjectBase : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
     public Action OnStick;
-    
+    [SerializeField] private AudioClip audioClip;
     [SerializeField] private float breakForce = 300f;
     [SerializeField] private float breakTorque = 300f;
     [SerializeField] private float damping = 1f;
@@ -47,6 +47,7 @@ public class ObjectBase : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
         
         if (!isFirstStick)
         {
+            GetComponent<AudioSource>().PlayOneShot(audioClip);
             OnStick?.Invoke();
             isFirstStick = true;
         }

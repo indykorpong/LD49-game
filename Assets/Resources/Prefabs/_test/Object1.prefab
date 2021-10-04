@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f94a0f569173184cb078e3f3bb46faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClip: {fileID: 0}
   breakForce: 300
   breakTorque: 300
   damping: 1
