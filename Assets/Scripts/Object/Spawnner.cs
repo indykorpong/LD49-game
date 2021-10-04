@@ -52,7 +52,7 @@ public class Spawnner : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
         objectToSpawn.Enqueue(objectList[Random.Range(0, objectList.Length)]);
@@ -61,15 +61,12 @@ public class Spawnner : MonoBehaviour
         
         gameManager.OnStart += SpawnItem;
         
-        
-        
         //SpawnItem();
         
     }
 
     private void SpawnItem()
     {
-        Debug.Log("spawn");
         if(!gameManager.isGameStart) return;
         
         
