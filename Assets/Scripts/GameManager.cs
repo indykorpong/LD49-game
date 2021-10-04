@@ -52,6 +52,6 @@ public class GameManager : Singleton<GameManager>
 
     private void ShowResult()
     {
-        finalResult.text = "Final Score: " + ScoreCounter.Score;
+        finalResult.text = "Final Score: " + ScoreCounter.Score.ToString("n1");
     }
 }

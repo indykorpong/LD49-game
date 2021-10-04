@@ -131,7 +131,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 472
+        y: 0
         width: 274
         height: 236
       alignment: 0
@@ -152,7 +152,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 274
-        y: 472
+        y: 0
         width: 274
         height: 236
       alignment: 0
@@ -173,7 +173,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 548
-        y: 472
+        y: 0
         width: 274
         height: 236
       alignment: 0
@@ -193,8 +193,8 @@ TextureImporter:
       name: Run_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 236
+        x: 822
+        y: 0
         width: 274
         height: 236
       alignment: 0
@@ -214,8 +214,8 @@ TextureImporter:
       name: Run_4
       rect:
         serializedVersion: 2
-        x: 274
-        y: 236
+        x: 1096
+        y: 0
         width: 274
         height: 236
       alignment: 0
@@ -235,8 +235,8 @@ TextureImporter:
       name: Run_5
       rect:
         serializedVersion: 2
-        x: 548
-        y: 236
+        x: 1370
+        y: 0
         width: 274
         height: 236
       alignment: 0
@@ -256,7 +256,7 @@ TextureImporter:
       name: Run_6
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1644
         y: 0
         width: 274
         height: 236
@@ -277,7 +277,7 @@ TextureImporter:
       name: Run_7
       rect:
         serializedVersion: 2
-        x: 274
+        x: 1918
         y: 0
         width: 274
         height: 236
