@@ -3,72 +3,97 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+namespace AI
 {
-    public float speed = 5f;
-    private Vector3 velocity;
-    private float xAxis;
-
-    public float jumpForce = 5f;
-    private float jumpCooldown = 1f;  // in seconds
-    private bool pressedJump;
-    private bool touchedGround;
-
-    private Rigidbody2D rb2D;
-
-    private void Start()
+    public class CharacterController : MonoBehaviour
     {
-        rb2D = GetComponent<Rigidbody2D>();
-        pressedJump = false;
-        touchedGround = true;
-    }
+        public float speed = 5f;
+        public int speedMultiplier = 1;
+        public float XAxis { get; set; }
 
-    private void Update()
-    {
+        public float jumpForce = 5f;
+        private bool pressedJump;
+
+        private Rigidbody2D rb2D;
         
+        public CapsuleCollider2D Collider { get; set; }
+        public Vector3 LastFramePosition { get; set; }
+
+        public GameObject[] raycast2DObjects;
         
-        Debug.Log($"ground: {touchedGround}, jump: {pressedJump}");
-    }
-
-    private void FixedUpdate()
-    {
-        ControlHorizontalMovement();
-        CheckJumpKeyPressed();
-        ControlJump();
-    }
-
-    private void ControlHorizontalMovement()
-    {
-        xAxis = Input.GetAxis("Horizontal");
-
-        velocity = new Vector3(xAxis, 0, 0);
-        rb2D.velocity = new Vector2(velocity.x * speed, rb2D.velocity.y);
-        //transform.position += velocity * speed * Time.deltaTime;
-    }
-
-    private void CheckJumpKeyPressed()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && !pressedJump && touchedGround)
+        private void Start()
         {
-            pressedJump = true;
-        }
-    }
+            rb2D = GetComponent<Rigidbody2D>();
+            pressedJump = false;
+            LastFramePosition = transform.position;
 
-    private void ControlJump()
-    {
-        if (pressedJump)
+            Collider = GetComponent<CapsuleCollider2D>();
+        }
+
+        private void Update()
+        {
+            if (LastFramePosition != transform.position)
+            {
+                LastFramePosition = transform.position;
+            }
+            
+            // CheckJumpKeyPressed();
+            // SetXAxis();
+        }
+
+        private void FixedUpdate()
+        {
+            XAxis = rb2D.velocity.normalized.x;
+            ControlHorizontalMovement();
+            // ControlJump();
+        }
+
+        private void CheckJumpKeyPressed()
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && !pressedJump)
+            {
+                pressedJump = true;
+            }
+        }
+
+        private void SetXAxis()
+        {
+            XAxis = Input.GetAxis("Horizontal");
+        }
+
+        private void ControlHorizontalMovement()
+        {
+            rb2D.velocity = new Vector2(speed, rb2D.velocity.y);
+        }
+
+        private void ControlJump()
+        {
+            if (pressedJump)
+            {
+                pressedJump = false;
+                rb2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            }
+        }
+
+        public void ChangeDirection()
+        {
+            speed *= -1;
+        }
+
+        public void Jump()
         {
             rb2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-            pressedJump = false;
-            touchedGround = false;
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Object"))
+        public void StayStill()
         {
-            touchedGround = true;
+            speed = 0f;
+        }
+
+        public void GameOver()
+        {
+            // TODO: call game over method
+            Debug.Log("Game Over!");
         }
     }
 }
