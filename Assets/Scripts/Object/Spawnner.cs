@@ -38,6 +38,7 @@ public class Spawnner : MonoBehaviour
     [SerializeField] private NextItemDisplayer nextItemDisplayer;
     [SerializeField] private GameObject[] objectList;
 
+    [SerializeField] private bool isMenu = false;
 
     private Queue<GameObject> objectToSpawn = new Queue<GameObject>();
     private bool canSpawn = true;
@@ -56,15 +57,25 @@ public class Spawnner : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         
         if (!spawnOnStart) return;
-
-        gameManager.OnStart += SpawnItem;
+        if (!isMenu)
+        {
+            gameManager.OnStart += SpawnItem;
+        }
+        
         objectToSpawn.Enqueue(objectList[Random.Range(0, objectList.Length)]);
-        //SpawnItem();
+        if (isMenu)
+        {
+            SpawnItem();
+        }
     }
 
     private void SpawnItem()
     {
-        if(!gameManager.isGameStart) return;
+        if (gameManager)
+        {
+            if(!gameManager.isGameStart) return;
+        }
+        
         if (canSpawn)
         {
             var _bound = gameObject.GetComponent<BoxCollider2D>().bounds;
