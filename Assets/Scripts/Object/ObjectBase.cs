@@ -15,18 +15,18 @@ public class ObjectBase : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
     [SerializeField] private float frequency = 5f;
 
     [SerializeField] private int maxStick = 2;
-    
+    [SerializeField] private Rigidbody2D rb;
     
     private TargetJoint2D targetJoint2D;
     private bool isStick = false;
     private bool canDrag = true;
     private bool isFirstStick = false;
     private int currentStick = 0;
-    
+    private List<FixedJoint2D> fixedJoint2Ds = new List<FixedJoint2D>();
     private void OnValidate()
     {
-        var _rb = GetComponent<Rigidbody2D>();
-        _rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        rb = GetComponent<Rigidbody2D>();
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         gameObject.tag = "Object";
     }
 
@@ -42,20 +42,52 @@ public class ObjectBase : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
         _joint.breakTorque = breakTorque;
         _joint.connectedBody = other.gameObject.GetComponentInParent<Rigidbody2D>();
         _joint.enableCollision = true;
-
+        
+        fixedJoint2Ds.Add(_joint);
+        
         if (!isFirstStick)
         {
             OnStick?.Invoke();
             isFirstStick = true;
         }
+
+        rb.gravityScale = 1;
         
         isStick = true;
         canDrag = false;
         currentStick++;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("OutZone"))
+        {
+            if (!isFirstStick)
+            {
+                OnStick?.Invoke();
+                isFirstStick = true;
+            }
+
+            if (isStick)
+            {
+                rb.bodyType = RigidbodyType2D.Static;
+                foreach (var _joint in fixedJoint2Ds)
+                {
+                    Destroy(_joint);
+                }
+                fixedJoint2Ds.Clear();
+            }
+        }
+        else if (other.gameObject.CompareTag("DestroyZone"))
+        {
+            OnStick?.Invoke();
+            Destroy(this.gameObject);
+        }
+    }
+
     private void OnJointBreak2D(Joint2D brokenJoint)
     {
+        fixedJoint2Ds.Remove((FixedJoint2D)brokenJoint);
         isStick = false;
         currentStick--;
     }

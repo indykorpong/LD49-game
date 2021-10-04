@@ -122,7 +122,8 @@ MonoBehaviour:
   breakTorque: 200
   damping: 1
   frequency: 5
-  maxStick: 2
+  maxStick: 1
+  rb: {fileID: 3294799217561956016}
 --- !u!60 &3294799217561956018
 PolygonCollider2D:
   m_ObjectHideFlags: 0

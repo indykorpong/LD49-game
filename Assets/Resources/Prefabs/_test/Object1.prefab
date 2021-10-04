@@ -102,6 +102,7 @@ MonoBehaviour:
   damping: 1
   frequency: 5
   maxStick: 2
+  rb: {fileID: 5723583354107258671}
 --- !u!50 &5723583354107258671
 Rigidbody2D:
   serializedVersion: 4
