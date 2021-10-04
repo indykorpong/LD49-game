@@ -36,6 +36,15 @@ namespace AI
             {
                 action.Execute();
             }
+
+            foreach (Transition transition in currentState.transitionList)
+            {
+                if (transition.condition.CheckCondition())
+                {
+                    transition.PerformTransition();
+                    break;
+                }
+            }
         }
 
         public void ChangeTo(State destState)

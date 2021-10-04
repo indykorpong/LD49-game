@@ -255,6 +255,7 @@ MonoBehaviour:
   stateList:
   - {fileID: 11400000, guid: 762d3f62457e90340b597a9bf19107e4, type: 2}
   - {fileID: 11400000, guid: 115697e32880ee44493ffb27d6655e71, type: 2}
+  currentState: {fileID: 0}
   initialState: {fileID: 11400000, guid: 115697e32880ee44493ffb27d6655e71, type: 2}
 --- !u!4 &124618588
 Transform:
@@ -1100,7 +1101,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 36891277926178479}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.06, y: 0.6, z: 0}
+  m_LocalPosition: {x: -1.32, y: 0.6, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 1498175989934692569}

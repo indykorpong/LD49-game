@@ -36,11 +36,36 @@ namespace AI
         }
 
         // 1st condition
-        public bool CharacterWillFallOffCameraView(float xAxisDirection, CharacterController controller)
+        public bool CharacterWillFallOffCameraView(CharacterController controller)
         {
             // return true if the character will fall off from the camera view
-            Vector3 characterPosition = controller.CharacterPosition;
-            return !(characterPosition.x >= cameraMinXPosition.x && characterPosition.x <= cameraMaxXPosition.x);
+            Vector3 characterPosition = controller.transform.position;
+            float characterSizeX = controller.Collider.bounds.size.x;
+            float offset = 0.01f;
+            float threshold = 0.01f;
+
+            float leftDirectionX = -1f;
+            float rightDirectionX = 1f;
+
+            bool willFall = false;
+            
+            // character will fall at the left side
+            if (Mathf.Abs(controller.XAxis - leftDirectionX) <= threshold)
+            {
+                willFall = characterPosition.x - (characterSizeX / 2 + offset) <= cameraMinXPosition.x;
+            }
+
+            // character will fall at the right side
+            else if (Mathf.Abs(controller.XAxis - rightDirectionX) <= threshold)
+            {
+                willFall = characterPosition.x + (characterSizeX / 2 + offset) >= cameraMaxXPosition.x;
+            }
+
+            if (willFall)
+            {
+                
+            }
+            return willFall;
         }
 
         // 2nd condition
@@ -99,7 +124,7 @@ namespace AI
 
             float movementThreshold = 0.01f;
 
-            float movementMagnitude = Vector3.Distance(controller.CharacterPosition, controller.LastFramePosition);
+            float movementMagnitude = Vector3.Distance(controller.transform.position, controller.LastFramePosition);
             return movementMagnitude <= movementThreshold;
         }
     }

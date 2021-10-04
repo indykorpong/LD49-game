@@ -8,14 +8,15 @@ namespace AI
     public class CharacterController : MonoBehaviour
     {
         public float speed = 5f;
-        private float _xAxis;
+        public int speedMultiplier = 1;
+        public float XAxis { get; set; }
 
         public float jumpForce = 5f;
         private bool pressedJump;
 
         private Rigidbody2D rb2D;
         
-        public Vector3 CharacterPosition { get; set; }
+        public CapsuleCollider2D Collider { get; set; }
         public Vector3 LastFramePosition { get; set; }
 
         public GameObject[] raycast2DObjects;
@@ -25,25 +26,26 @@ namespace AI
             rb2D = GetComponent<Rigidbody2D>();
             pressedJump = false;
             LastFramePosition = transform.position;
+
+            Collider = GetComponent<CapsuleCollider2D>();
         }
 
         private void Update()
         {
+            if (LastFramePosition != transform.position)
+            {
+                LastFramePosition = transform.position;
+            }
+            
             // CheckJumpKeyPressed();
             // SetXAxis();
         }
 
         private void FixedUpdate()
         {
-            CharacterPosition = transform.position;
-            
-            // ControlHorizontalMovement(_xAxis);
+            XAxis = rb2D.velocity.normalized.x;
+            ControlHorizontalMovement();
             // ControlJump();
-
-            if (LastFramePosition != CharacterPosition)
-            {
-                LastFramePosition = CharacterPosition;
-            }
         }
 
         private void CheckJumpKeyPressed()
@@ -56,12 +58,12 @@ namespace AI
 
         private void SetXAxis()
         {
-            _xAxis = Input.GetAxis("Horizontal");
+            XAxis = Input.GetAxis("Horizontal");
         }
 
-        private void ControlHorizontalMovement(float xAxis)
+        private void ControlHorizontalMovement()
         {
-            rb2D.velocity = new Vector2(xAxis * speed, rb2D.velocity.y);
+            rb2D.velocity = new Vector2(speed, rb2D.velocity.y);
         }
 
         private void ControlJump()
@@ -73,14 +75,9 @@ namespace AI
             }
         }
 
-        public void WalkLeft()
+        public void ChangeDirection()
         {
-            ControlHorizontalMovement(-1f);
-        }
-
-        public void WalkRight()
-        {
-            ControlHorizontalMovement(1f);
+            speed *= -1;
         }
 
         public void Jump()
@@ -90,7 +87,7 @@ namespace AI
 
         public void StayStill()
         {
-            ControlHorizontalMovement(0f);
+            speed = 0f;
         }
 
         public void GameOver()

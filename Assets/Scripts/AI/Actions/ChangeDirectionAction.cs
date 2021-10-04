@@ -2,8 +2,8 @@
 
 namespace AI
 {
-    [CreateAssetMenu(menuName = "FSM/Action/WalkRightAction", fileName = "WalkRightAction")]
-    public class WalkRightAction : Action
+    [CreateAssetMenu(menuName = "FSM/Action/ChangeDirectionAction", fileName = "ChangeDirectionAction")]
+    public class ChangeDirectionAction : Action
     {
         private CharacterController controller;
         
@@ -14,7 +14,7 @@ namespace AI
         
         public override void Execute()
         {
-            controller.WalkRight();
+            controller.ChangeDirection();
         }
     }
 }

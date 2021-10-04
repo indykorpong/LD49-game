@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea22717771fd4924b3903acd2e5f05cc, type: 3}
   m_Name: WalkLeftState
   m_EditorClassIdentifier: 
-  actionList:
-  - {fileID: 11400000, guid: 5da8601d1741b7046bf16711333c5177, type: 2}
+  actionList: []
   transitionList:
   - {fileID: 11400000, guid: 92c2a11c51946f348a4e1bfecd7d5894, type: 2}
