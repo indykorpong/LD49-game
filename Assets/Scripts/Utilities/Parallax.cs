@@ -6,6 +6,8 @@ public class Parallax : MonoBehaviour
 {
     private float length, startpos;
     [SerializeField] private bool repeat;
+
+    [SerializeField] private bool checkUpper;
     [SerializeField] private float offset;
     [SerializeField] private Camera cam;
     [SerializeField] private float parallaxEffect;
@@ -30,12 +32,23 @@ public class Parallax : MonoBehaviour
         {
             lowerCam = cam.ViewportToWorldPoint(new Vector3(0, cam.rect.min.y)).y;
             upperCam = cam.ViewportToWorldPoint(new Vector3(0, cam.rect.max.y)).y;
-        
-            if (_pos <= lowerCam - 10)
+
+            if (!checkUpper)
             {
-                var _newPos = Random.Range(0, 3f);
-                startpos = upperCam + _newPos;
+                if (_pos <= lowerCam - 10)
+                {
+                    var _newPos = Random.Range(0, 3f);
+                    startpos = upperCam + _newPos;
+                }
             }
+            else
+            {
+                if (_pos <= upperCam + 10)
+                {
+                    startpos = upperCam + 30;
+                }
+            }
+            
         }
         
     }
