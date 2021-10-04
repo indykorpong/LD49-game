@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject finalPanel;
     [SerializeField] private TextMeshProUGUI finalResult;
     public ScoreCounter ScoreCounter;
-
+    
     private void OnValidate()
     {
         if (!ScoreCounter)
@@ -24,8 +24,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        pausePanel.SetActive(false);
-        finalPanel.SetActive(false);
+        if (pausePanel && finalPanel)
+        {
+            pausePanel.SetActive(false);
+            finalPanel.SetActive(false);
+        }
         isGameStart = true;
         Time.timeScale = 1;
         OnStart?.Invoke();

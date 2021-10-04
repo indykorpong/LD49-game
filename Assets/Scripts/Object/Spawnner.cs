@@ -55,26 +55,23 @@ public class Spawnner : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        objectToSpawn.Enqueue(objectList[Random.Range(0, objectList.Length)]);
         
         if (!spawnOnStart) return;
-        if (!isMenu)
-        {
-            gameManager.OnStart += SpawnItem;
-        }
         
-        objectToSpawn.Enqueue(objectList[Random.Range(0, objectList.Length)]);
-        if (isMenu)
-        {
-            SpawnItem();
-        }
+        gameManager.OnStart += SpawnItem;
+        
+        
+        
+        //SpawnItem();
+        
     }
 
     private void SpawnItem()
     {
-        if (gameManager)
-        {
-            if(!gameManager.isGameStart) return;
-        }
+        Debug.Log("spawn");
+        if(!gameManager.isGameStart) return;
+        
         
         if (canSpawn)
         {
